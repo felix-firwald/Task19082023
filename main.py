@@ -17,10 +17,12 @@ data = data.rename(
 # экстремумы (мин, макс),
 # среднее и медиану,
 # 95, 99 перцентили
-print(data.mean())
-print(data.median())
+print(data.describe([0.95, 0.99]))
+# print(data.mean())
+# print(data.median())
 
 # Task 3: add column `agg_feature` with average
+data['agg_feature'] = data.mean(axis=1)
 
 # Task 4: to csv file
 data.to_csv(
