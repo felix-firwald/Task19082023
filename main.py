@@ -7,19 +7,23 @@ data = pd.DataFrame(
     columns=list('ABCD')
 )
 
-# Task 1: rename
+# Task 1: rename (для красоты кода воспользуемся Dict Comprehension)
 data = data.rename(
     columns={column: f'feature_{column.lower()}' for column in data.columns}
 )
 
 # Task 2:
-# стандартное отклонение,
-# экстремумы (мин, макс),
-# среднее и медиану,
-# 95, 99 перцентили
+# в задании не указано что делать с этими данными после вычисления
+# поэтому пускай выводятся в консоль
+# можно так:
 print(data.describe([0.95, 0.99]))
-# print(data.mean())
-# print(data.median())
+
+# если нужно отдельно, то некоторые значения можно достать вот так:
+print(data.std())
+print(data.min())
+print(data.max())
+print(data.mean())
+print(data.median())
 
 # Task 3: add column `agg_feature` with average
 data['agg_feature'] = data.mean(axis=1)
@@ -30,4 +34,3 @@ data.to_csv(
     sep=";"
 )
 
-print(data.head())
